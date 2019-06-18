@@ -12,3 +12,6 @@ s.add(y < 10)
 # Rule 2 is true when x > 7 and y > 6
 s.add(x > 7)
 s.add(y > 6)
+
+# We have a conflict if there's some assignment
+# to x and y such that all the constraints hold

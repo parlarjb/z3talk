@@ -1,5 +1,4 @@
 from z3 import *
-from presentationutils import force_new_solution
 
 # We have $100, and need to buy 100 animals
 # We have to buy a least one dog, one cat, and one mouse
@@ -8,7 +7,9 @@ from presentationutils import force_new_solution
 
 # The variables `dog`, `cat` and `mouse` represent
 # how many of each we will buy
-dog, cat, mouse = Ints('dog cat mouse')
+dog = Int('dog')
+cat = Int('cat')
+mouse = Int('mouse')
 
 s = Solver()
 

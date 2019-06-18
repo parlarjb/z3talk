@@ -1,5 +1,4 @@
 from z3 import *
-from presentationutils import force_new_solution
 
 # Declare z3 variables x, y and z
 x = Int('x')
@@ -16,4 +15,4 @@ s.add(x + y + z == 42)
 
 s.add(y + z == 26)
 
-# s.add(z < 0)
+s.add(z < 0)

@@ -1,5 +1,4 @@
 from z3 import *
-from presentationutils import force_new_solution
 
 # Declare z3 variables x, y and z
 x = Real('x')

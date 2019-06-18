@@ -46,10 +46,10 @@ def rule1_condition(state):
 
 # Action
 #   b := b + 5
-def rule1_action(prev_state, next_state):
+def rule1_action(curr_state, next_state):
     return And(
-        next_state['b'] == prev_state['b'] + 5,
-        next_state['a'] == prev_state['a']
+        next_state['b'] == curr_state['b'] + 5,
+        next_state['a'] == curr_state['a']
     )
 
 # Condition
@@ -64,18 +64,18 @@ def rule2_condition(state):
 
 # Action
 #   a := a + b
-def rule2_action(prev_state, next_state):
+def rule2_action(curr_state, next_state):
     return And(
-        next_state['a'] == prev_state['a'] + prev_state['b'],
-        next_state['b'] == prev_state['b']
+        next_state['a'] == curr_state['a'] + curr_state['b'],
+        next_state['b'] == curr_state['b']
     )
 
 # Return a constraint that between two states,
 # none of our variables change
-def unchanged(prev_state, next_state):
+def unchanged(curr_state, next_state):
     return And(
-        next_state['a'] == prev_state['a'],
-        next_state['b'] == prev_state['b']
+        next_state['a'] == curr_state['a'],
+        next_state['b'] == curr_state['b']
     )
 
 
