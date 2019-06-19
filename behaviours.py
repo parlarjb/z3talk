@@ -1,4 +1,32 @@
-from z3 import *
+from z3 import Int, Solver, And, If, Or
+
+"""
+This is a system model of a "business rule engine". Initially,
+the engine has two rules in it, `c_updater` and `d_updater`.
+
+The `c_updater` rule will fire whenever b>10. If it fires, it
+will set `c` to 20.
+
+The `d_updater` rule will fire whenever c>10. If it fires, it
+will set `d` to 0.
+
+The order the rules are evaluated in (the workflow) is c_updater, followed
+by d_updater.
+
+Then a customer proposes that we introduce a new rule, called `c2_updater`.
+This rule will fire whenever a>10, and it will set c to 0.
+
+They wish this new rule to be evaluated after `c_updater`, and before `d_updater`.
+
+The question we ask the system: is there any initial value for a, b, c, or d that will
+cause the new rule to "break" an existing behaviour? In other words, will any initial
+value have a different result for the old set of rules versus the new set of rules?
+
+If `s.check()` evaluates to `sat`, it means that z3 has found an instance. `s.model()`
+will print out all the values. In particular, the values for `a_0`, `b_0`, `c_0` and `d_0`
+are the initial values for a, b, c and d that will cause the the two sets of rules to
+behave differently.
+"""
 
 a_0 = Int('a_0')
 b_0 = Int('b_0')
@@ -172,3 +200,6 @@ s.add(
         final_old['d'] != final_new['d'],
     )
 )
+
+s.check()
+s.model()
